@@ -1,0 +1,36 @@
+{
+  "id": "83605990623",
+  "publishPath": "2017/trump-urls/",
+  "url": "http://www.politico.com/interactives/2017/trump-urls/",
+  "timestamp": "2017-04-13T08:13-0400",
+  "dateline": "04/13/17 08:13 PM EDT",
+  "share": {
+    "fbook": {
+      "card_title": "Trump URLs",
+      "card_description": "The latest news from POLITICO.",
+      "author": "politico"
+    },
+    "twitter": {
+      "card_title": "Trump URLs",
+      "share_tweet": "The latest news from POLITICO.",
+      "card_description": "The latest news from POLITICO.",
+      "author": "@politico"
+    },
+    "image": {
+      "url": "http://www.politico.com/interactives/2017/trump-urls/images/share.jpg",
+      "alt": "<Text>",
+      "type": "image/jpeg",
+      "width": "600",
+      "height": "300"
+    },
+    "keywords": "POLITICO, News, Washington D.C."
+  },
+  "telium": {
+    "free_paid_content": "free",
+    "site_section": "white house",
+    "ad_unit_section": "whitehouse",
+    "content_author": "Polly Politico|Peter Politico",
+    "content_byline": "By Polly Politico and Peter Politico",
+    "page_name": "Trump URLs — POLITICO"
+  }
+}

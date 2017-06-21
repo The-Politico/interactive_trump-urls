@@ -1,0 +1,11 @@
+{
+  "generator-politico-interactives": {
+    "promptValues": {
+      "lintProfile": "es6-recommended",
+      "awsAccessKey": "AKIAJGFU7BX32EFXGMAQ",
+      "awsSecretKey": "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",
+      "clientId": "645207643900-ftjpn3a8cu1sseb1hhsu6ogj4sva45qo.apps.googleusercontent.com",
+      "clientSecret": "pbErKhBXz0QiucdycFyD9O59"
+    }
+  }
+}

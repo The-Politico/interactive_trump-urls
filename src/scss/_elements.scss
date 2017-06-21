@@ -1,0 +1,168 @@
+.clear {
+  clear: both;
+}
+
+html {
+  height: 100%;
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+article{
+  margin-bottom: 2em;
+}
+
+body {
+  color: $black;
+  font-family: $tisa;
+  position: relative;
+  margin: 0;
+  padding-bottom: 6rem;
+  min-height: 100%;
+  font-size: 17px;
+}
+
+a{
+  color: #0a7cc4;
+  &:hover, &:focus {
+    color: #0e9af3;
+  }
+}
+
+a,
+a::before,
+a::after,
+button {
+  -webkit-transition: all .25s ease;
+  transition: all .25s ease;
+}
+
+
+// Aligning text
+.center-align-text{
+  text-align: center;
+}
+
+.left-align-text{
+  text-align: left;
+}
+
+.right-align-text{
+  text-align: right;
+}
+
+// Fitting elements to the size of the well
+.content-fit{
+  max-width: 600px;
+  @include margin-auto;
+}
+
+.large{
+  max-width: 800px;
+  @include margin-auto;
+}
+
+.full-width{
+  width: 100%;
+  @include margin-auto;
+}
+
+p {
+  font-family: $tisa;
+  font-size: 1.2em;
+  line-height: 1.618em;
+  margin: 1.618em auto;
+  max-width: 600px;
+  overflow-wrap: break-word;
+
+  @media (max-width: $width-medium) {
+    font-size: 1.15em;
+  }
+
+  span.dropcap {
+    float: left;
+    font-size: 90px;
+    line-height: 0.85em;
+    font-family: $tablet;
+    margin-right: 0.115em;
+    color: $black;
+    text-transform: uppercase;
+    margin-top: 0px;
+   }
+}
+
+h2,
+h3,
+h4,
+h5 {
+  font-family: $jubilat;
+  font-weight: 600;
+  margin: 0 auto 5px;
+  max-width: 100%;
+  text-align: center;
+}
+
+h2,
+h3,
+h4,
+h5{
+  &.left{
+  max-width: 600px;
+  text-align: left;
+  }
+  + p{
+    margin-top: .1em;
+  }
+}
+
+
+
+h3.sans{
+  font-weight: 700;
+}
+
+
+h2, .h2 {
+  @include julibat-light;
+  font-size: 33px;
+  @media(max-width: $width-small){
+    font-size: 28px;
+  }
+}
+
+h3, .h3 {
+  @include julibat-light;
+  font-size: 25px;
+  @media(max-width: $width-small){
+    font-size: 20px;
+  }
+}
+
+
+
+
+// Sections
+article section {
+  margin: 0 auto;
+  max-width: 600px;
+  padding: 1.5em 0;
+
+  p:last-of-type{
+    margin-bottom: 0;
+  }
+
+  figure + p{
+      margin-top: 10px;
+  }
+
+  h3, h4, h5 {
+    + figure {
+      margin-top: 10px;
+    }
+  }
+}
