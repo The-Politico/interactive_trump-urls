@@ -1,3 +1,6 @@
+import Vue from 'vue';
+import App from './components/App.vue'
+
 window.$('.icon-facebook').click((e) => {
   e.preventDefault();
   const uri = encodeURIComponent(window.location.href);
@@ -11,3 +14,12 @@ window.$('.icon-twitter').click((e) => {
   const status = encodeURIComponent(`${window.tweetText} ${uri}`);
   window.open(`https://twitter.com/home?status=${status}`);
 });
+
+const app = new Vue({
+  el: '#app',
+  template: '<App />',
+  components: {
+    App: App
+  },
+  render: h => h(App),
+})

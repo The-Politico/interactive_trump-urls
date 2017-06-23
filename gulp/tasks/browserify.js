@@ -9,6 +9,7 @@ const gutil = require('gulp-util');
 const babelify = require('babelify');
 const babili = require('gulp-babili');
 const es = require('event-stream');
+const vueify = require('vueify');
 
 module.exports = (watch) => {
   const wrapper = watch ? watchify : b => b;
@@ -28,9 +29,16 @@ module.exports = (watch) => {
         debug: true,
       };
 
-      const bundler = wrapper(browserify(props).transform(babelify, {
-        presets: ['es2015', 'react'],
-      }));
+      const bundler = wrapper(browserify(props)
+        .transform(vueify, {
+          sass: {
+            includePaths: ['src/scss']
+          }
+        })
+        .transform(babelify, {
+          presets: ['es2015', 'react'],
+        })
+      );
 
       function bundle() {
         return bundler.bundle()
