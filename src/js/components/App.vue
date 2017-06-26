@@ -12,7 +12,9 @@
         erase-style='select-all'
         :erase-on-complete='false'
         @typed='onTyped'
+        v-if="!interacted"
       ></vue-typer>
+      <input type="text" v-if="interacted" />
     </div>
     <explorer :cards="cards"></explorer>
   </div>
@@ -37,6 +39,11 @@ export default {
   },
   mounted() {
     this.getCards();
+  },
+  computed: {
+    interacted() {
+      return this.$store.state.interacted
+    }
   },
   methods: {
     onTyped: function(typedString) {

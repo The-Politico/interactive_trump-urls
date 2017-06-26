@@ -30,11 +30,15 @@ Vue.use(Vuex)
 
 const store = new Vuex.Store({
   state: {
-    category: 'Surprise me!'
+    category: 'Surprise me!',
+    interacted: false
   },
   mutations: {
-    change (state, newCategory) {
-      state.category = newCategory
+    change(state, newCategory) {
+      state.category = newCategory;
+    },
+    updateInteraction(state, interaction) {
+      state.interacted = interaction;
     }
   }
 })

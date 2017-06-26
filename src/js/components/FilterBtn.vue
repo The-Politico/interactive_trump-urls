@@ -8,11 +8,14 @@ export default {
   props: ['category'],
   methods: {
     changeCategory: function(event) {
+      this.$store.commit('updateInteraction', true);
+      
       const allButtons = document.querySelectorAll('button.filter-btn');
       allButtons.forEach((btn) => {
         btn.classList.remove('selected');
       });
       event.target.classList.add('selected');
+
       this.$store.commit('change', this.category)
     }
   }
