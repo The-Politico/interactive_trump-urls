@@ -1,6 +1,6 @@
 <template>
   <div class="card">
-    <h4>Category</h4>
+    <h4>{{ url.category }}</h4>
     <h3>{{ url.domain }}</h3>
     <p>{{ url.owner_org }}</p>
 

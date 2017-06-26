@@ -1,11 +1,11 @@
 <template>
   <div id="explorer">
     <div class="btns">
-      <filter-btn category="Defensive"></filter-btn>
-      <filter-btn category="Business Ventures"></filter-btn>
-      <filter-btn category="Politics"></filter-btn>
-      <filter-btn category="Foreign Countries"></filter-btn>
-      <filter-btn category="Surprise me!"></filter-btn>
+      <filter-btn category="Odd Names" class="odd-names"></filter-btn>
+      <filter-btn category="Business Ventures" class="business-ventures"></filter-btn>
+      <filter-btn category="Political Sites" class="political-sites"></filter-btn>
+      <filter-btn category="Foreign Ventures" class="foreign-ventures"></filter-btn>
+      <filter-btn category="Surprise me!" class="surprise-me"></filter-btn>
     </div>
     <div class="selections">
       <carousel :navigationEnabled="true" :paginationEnabled="false" :perPage=2>
@@ -37,7 +37,37 @@ export default {
   },
   computed: {
     selectedCards: function() {
-      return this.cards
+      var filter = []
+
+      for (var key in this.cards) {
+        if (this.cards.hasOwnProperty(key)) {
+          const category = this.cards[key]['category']
+          if (this.$store.state.category === 'Surprise me!') {
+            filter.push(this.cards[key])
+          }
+          else if (category === this.$store.state.category) {
+            filter.push(this.cards[key]);
+          }
+        }
+      }
+
+      if (this.$store.state.category === 'Surprise me!') {
+        this.shuffle(filter)
+      }
+
+      if (this.$children.length > 0) {
+        this.$children[5].currentPage = 0
+      }
+
+      return filter
+    }
+  },
+  methods: {
+    shuffle(a) {
+      for (let i = a.length; i; i--) {
+        let j = Math.floor(Math.random() * i);
+        [a[i - 1], a[j]] = [a[j], a[i - 1]];
+      }
     }
   },
   props: ['cards'],
