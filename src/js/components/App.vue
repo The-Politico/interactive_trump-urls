@@ -14,7 +14,7 @@
         @typed='onTyped'
         v-if="!interacted"
       ></vue-typer>
-      <input type="text" v-if="interacted" />
+      <input class="url-search" type="text" v-if="interacted" placeholder="Search for a URL" />
     </div>
     <explorer :cards="cards"></explorer>
   </div>
@@ -71,6 +71,14 @@ export default {
     font-family: "fontello";
     content: '\e801';
     padding-right: 10px;
+  }
+
+  .url-search {
+    border: none;
+    width: 95%;
+    display: inline-block;
+    position: relative;
+    left: -12px;
   }
 }
 

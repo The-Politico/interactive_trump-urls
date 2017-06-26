@@ -1,5 +1,5 @@
 <template>
-  <div class="card">
+  <div :class="[cardClass, categoryClass]">
     <h4>{{ url.category }}</h4>
     <h3>{{ url.domain }}</h3>
     <p>{{ url.owner_org }}</p>
@@ -22,11 +22,17 @@
 </template>
 
 <script>
-import request from 'superagent';
-
 export default {
   name: 'card',
-  props: ['url']
+  props: ['url'],
+  computed: {
+    cardClass() {
+      return 'card'
+    },
+    categoryClass() {
+      return window.classify(this.url.category)
+    } 
+  }
 }
 
 </script>
@@ -36,7 +42,22 @@ export default {
   box-sizing: border-box;
   padding: 40px 100px;
   margin: 0 10px;
-  background-color: #D2E6B7;
+
+  &.business-ventures {
+    background-color: #D2E6B7;  
+  }
+
+  &.foreign-ventures {
+    background-color: #BCEBE7;
+  }
+
+  &.political-sites {
+    background-color: #F3C4C4;
+  }
+
+  &.odd-names {
+    background-color: #F4D7B1;
+  }
 
 
   h1, h2, h3, h4, h5, h6, p {

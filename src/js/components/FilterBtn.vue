@@ -9,7 +9,7 @@ export default {
   methods: {
     changeCategory: function(event) {
       this.$store.commit('updateInteraction', true);
-      
+
       const allButtons = document.querySelectorAll('button.filter-btn');
       allButtons.forEach((btn) => {
         btn.classList.remove('selected');
@@ -28,12 +28,13 @@ export default {
     border: 1px solid #666;
     padding: 15px;
     border-radius: none;
+    font-weight: bold;
 
     &.odd-names {
       &.selected, &:hover {
         background-color: #F4D7B1;
         border: 1px solid #F4D7B1;
-        color: #D5AD78;
+        color: #111;
       }
     }
 
@@ -41,7 +42,7 @@ export default {
       &.selected, &:hover {
         background-color: #D2E6B7;
         border: 1px solid #D2E6B7;
-        color: #778E58;
+        color: #111;
       }
     }
 
@@ -49,7 +50,7 @@ export default {
       &.selected, &:hover {
         background-color: #BCEBE7;
         border: 1px solid #BCEBE7;
-        color: #6FA8A4;
+        color: #111;
       }
     }
 
@@ -57,7 +58,7 @@ export default {
       &.selected, &:hover {
         background-color: #F3C4C4;
         border: 1px solid #F3C4C4;
-        color: #D49393;
+        color: #111;
       }
     }
 
@@ -65,7 +66,7 @@ export default {
       &.selected, &:hover {
         background-color: #EAEAEA;
         border: 1px solid #EAEAEA;
-        color: #737373;
+        color: #111;
       }
     }
 
