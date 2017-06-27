@@ -161,9 +161,12 @@ export default {
 #search {
   border: 1px solid #ddd;
   padding: 10px 20px;
-  font-size: 48px;
+  font-size: 40px;
   font-family: 'Roboto', monospace;
   text-align: center;
+    @media(max-width: 768px){
+        font-size: 20px;
+    }
 
   &:before {
     font-family: "fontello";
