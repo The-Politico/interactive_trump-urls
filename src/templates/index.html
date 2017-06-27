@@ -19,11 +19,6 @@
         {{ HED }}
     </h1>
     <p class="subhead">{{ DEK }} </p>
-    <div class="info">
-        <p>
-            By <span class="byline"><a href="###">First Lastname</a></span> and <span class="byline"><a href="https://twitter.com/tylrfishr">Tyler Fisher</a></span> | <span class="timestamp"> <time datetime="{{meta.timestamp}}">{{meta.dateline}}</time></span>
-        </p>
-    </div>
 </header>
 {%endblock%}
 
@@ -32,6 +27,14 @@
 {% raw %}
 <div id="intro-app"></div>
 {% endraw %}
+
+
+<div class="info">
+    <p>
+        By <span class="byline"><a target="blank" href="http://www.politico.com/staff/edward-isaac-dovere">Edward-Isaac Dovere</a></span>, <span class="byline"><a target="blank" href="http://www.politico.com/staff/madeline-conway"> Madeline Conway</a></span> and <span class="byline"><a target="blank" href="https://twitter.com/tylrfishr">Tyler Fisher</a></span> | <span class="timestamp"> <time datetime="{{meta.timestamp}}">{{meta.dateline}}</time></span>
+    </p>
+</div>
+
 
 {{ TOP|markdown }}
 {{ SECOND|markdown }}
