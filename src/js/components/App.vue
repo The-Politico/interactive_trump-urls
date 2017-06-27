@@ -48,7 +48,7 @@ export default {
   },
   data() {
     return {
-      typeList: ['trumponice.com', 'trumprussia.com', 'donaldtrumpponzischeme.com', 'electtrump.com', 'downloaddonald.com', 'playwithdonald.com', 'trumpvodkasucks.com'],
+      typeList: ['trumponice.com', 'donaldtrumpponzischeme.com', 'electtrump.com', 'downloaddonald.com', 'playwithdonald.com', 'trumpvodkasucks.com'],
       cards: {},
       subcategories: []
     }
