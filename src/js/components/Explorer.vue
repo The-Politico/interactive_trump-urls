@@ -1,7 +1,7 @@
 <template>
   <div id="explorer" class="explorer">
     <div class="selections">
-      <carousel :navigationEnabled="true" :paginationEnabled="false" :perPage=2>
+      <carousel :navigationEnabled="true" :paginationEnabled="false" :perPageCustom="[[480,1], [768, 2]]" :speed="0">
         <slide v-for="card in cards">
           <card :url="card"></card>
         </slide>
@@ -22,6 +22,9 @@ export default {
     'Slide': Slide
   },
   props: ['cards'],
+  mounted() {
+    console.log(this.cards);
+  }
 }
 </script>
 

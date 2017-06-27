@@ -30,7 +30,7 @@ window.classify = function(str) {
     .replace(/-+$/, '');            // Trim - from end of text
 } 
 
-// getCards();
+getCards();
 
 Vue.use(Vuex)
 
@@ -60,7 +60,6 @@ const store = new Vuex.Store({
 const app = new Vue({
   el: '#intro-app',
   store,
-  template: '<App />',
   components: {
     App: App
   },
@@ -96,25 +95,31 @@ function cardFilter(category, subcategory) {
     }
   }
 
-
-  console.log(filter);
   return filter;
 }
 
 function renderExtraEmbeds() {
-  const venezuela = new Vue({
-    el: '#venezuela',
-    template: '<explorer cards="cards"></explorer>',
+  const trumpU = new Vue({
+    el: '#trump-u',
     components: {
       Explorer: Explorer  
     },
-    data: {
-      cards: {}
+    render: h => h(Explorer, { 
+      props: {
+        cards: cardFilter('Business Ventures', 'Trump University')
+      },
+    })
+  });
+
+  const foreign = new Vue({
+    el: '#foreign',
+    components: {
+      Explorer: Explorer  
     },
-    render: h => h(Explorer),
-    mounted() {
-      const filtered = cardFilter('Business Ventures', 'Trump University')
-      this.cards = filtered;
-    },
-  })
+    render: h => h(Explorer, { 
+      props: {
+        cards: cardFilter('Foreign Ventures')
+      },
+    })
+  });
 }

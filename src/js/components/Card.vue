@@ -2,7 +2,7 @@
   <div :class="[cardClass, categoryClass]">
     <h4>{{ url.category }}</h4>
     <h3 :class="isLongTitle">{{ url.domain.toLowerCase() }}</h3>
-    <p class="org">{{ url.owner_org }}</p>
+    <p class="org"><strong>Registered to: </strong>{{ url.owner_org }}</p>
 
     <div class="dates">
       <div class="date">
