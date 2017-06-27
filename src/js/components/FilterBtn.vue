@@ -20,6 +20,7 @@ export default {
         this.$emit('reshuffle')
       } else {
         this.$store.commit('change', this.category)
+        this.$store.commit('updateSubcategory', null);
       }
     }
   }

@@ -1,7 +1,7 @@
 <template>
   <div :class="[cardClass, categoryClass]">
     <h4>{{ url.category }}</h4>
-    <h3 :class="isLongTitle">{{ url.domain }}</h3>
+    <h3 :class="isLongTitle">{{ url.domain.toLowerCase() }}</h3>
     <p class="org">{{ url.owner_org }}</p>
 
     <div class="dates">
@@ -33,7 +33,7 @@ export default {
       return window.classify(this.url.category)
     },
     isLongTitle() {
-      return this.url.domain.length > 35 ? 'small' : null
+      return this.url.domain.length > 35 ? this.url.domain.length > 50 ? 'tiny' : 'small' : null
     }
   }
 }
@@ -43,8 +43,9 @@ export default {
 <style lang="scss">
 .card {
   box-sizing: border-box;
-  padding: 40px 100px;
+  padding: 40px 40px;
   margin: 0 10px;
+  min-height: 267px;
 
   &.business-ventures {
     background-color: #D2E6B7;  
@@ -73,12 +74,9 @@ export default {
   }
 
   h3 {
-    font-family: monospace;
-    font-size: 16px;
-
-    &.small {
-      font-size: 13px;
-    }
+    font-family: 'Roboto', Helvetica, Arial, sans-serif;
+    font-size: 28px;
+    word-break: break-all;
   }
 
   h4 {

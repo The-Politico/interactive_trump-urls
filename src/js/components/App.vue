@@ -2,7 +2,7 @@
   <div id="wrapper">
     <div id="search">
       <vue-typer
-        :text='["trumponice.com","trumpindia.com"]'
+        :text='typeList'
         :repeat='Infinity'
         initial-action='typing'
         :pre-type-delay='70'
@@ -14,27 +14,43 @@
         @typed='onTyped'
         v-if="!interacted"
       ></vue-typer>
-      <input class="url-search" type="text" v-if="interacted" placeholder="Search for a URL" />
+      <span class="explore-prompt" v-if="interacted">Explore the URLs below</span>
     </div>
-    <explorer :cards="cards"></explorer>
+    <div class="btns">
+      <filter-btn category="Odd Names" class="odd-names" v-on:reshuffle="reshuffleCards"></filter-btn>
+      <filter-btn category="Business Ventures" class="business-ventures" v-on:reshuffle="reshuffleCards"></filter-btn>
+      <filter-btn category="Political Sites" class="political-sites" v-on:reshuffle="reshuffleCards"></filter-btn>
+      <filter-btn category="Foreign Ventures" class="foreign-ventures" v-on:reshuffle="reshuffleCards"></filter-btn>
+      <filter-btn category="Surprise me!" class="surprise-me" v-on:reshuffle="reshuffleCards"></filter-btn>
+    </div>
+    <div class="subcategories secondary">
+      <subcategory-btn v-for="subcategory in subcategories" :key="subcategory" :name="subcategory"></subcategory-btn>
+    </div>      
+    <explorer :cards="selectedCards"></explorer>
   </div>
 </template>
 
 <script>
 import { VueTyper } from 'vue-typer';
 import request from 'superagent';
-import Explorer from './Explorer.vue'
+import Suggestions from 'suggestions';
+import FilterBtn from './FilterBtn.vue';
+import Explorer from './Explorer.vue';
+import SubcategoryBtn from './SubcategoryBtn.vue';
 
 export default {
   name: 'app',
   components: { 
     'explorer': Explorer,
+    'filter-btn': FilterBtn,
     'vue-typer': VueTyper,
+    'subcategory-btn': SubcategoryBtn
   },
   data() {
     return {
-      url: "trumponice.com",
-      cards: {}
+      typeList: ['trumponice.com', 'trumprussia.com', 'donaldtrumpponzischeme.com', 'electtrump.com', 'downloaddonald.com', 'playwithdonald.com', 'trumpvodkasucks.com'],
+      cards: {},
+      subcategories: []
     }
   },
   mounted() {
@@ -43,11 +59,53 @@ export default {
   computed: {
     interacted() {
       return this.$store.state.interacted
-    }
+    },
+    selectedCards() {
+      var filter = []
+
+      for (var key in this.cards) {
+        if (this.cards.hasOwnProperty(key)) {
+          const category = this.cards[key]['category']
+          const subcategory = this.cards[key]['subcategory'];
+
+          if (this.$store.state.subcategory) {
+            if (this.$store.state.category === 'Surprise me!' && this.$store.state.subcategory === subcategory) {
+              filter.push(this.cards[key])
+            }
+            else if (category === this.$store.state.category && this.$store.state.subcategory === subcategory) {
+              filter.push(this.cards[key]);
+            }
+          } else {
+            if (this.$store.state.category === 'Surprise me!') {
+              filter.push(this.cards[key])
+            }
+            else if (category === this.$store.state.category) {
+              filter.push(this.cards[key]);
+            }
+          }
+        }
+      }
+      this.shuffle(filter)
+      this.setSliderIndex(0);
+      this.updateSubcategories();
+      return filter
+    },
   },
   methods: {
     onTyped: function(typedString) {
-      this.url = typedString;
+      this.$store.commit('updateSelection', this.cards[typedString.toUpperCase()]);
+      
+      let navigateIndex = 0;      
+      const slides = document.querySelectorAll('.VueCarousel-slide');
+      for (var i = 0; i < slides.length; i++) {
+        const domain = slides[i].querySelector('h3').textContent;
+        if (domain === typedString){
+          navigateIndex = i;
+        }
+      }
+      
+      const len = this.$children.length;
+      this.setSliderIndex(navigateIndex)
     },
     getCards: function() {
       request
@@ -55,8 +113,47 @@ export default {
         .end((err, res) => {
           this.cards = res.body
         })
+    },
+    shuffle(a) {
+      for (let i = a.length; i; i--) {
+        let j = Math.floor(Math.random() * i);
+        [a[i - 1], a[j]] = [a[j], a[i - 1]];
+      }
+    },
+    reshuffleCards() {
+      this.shuffle(this.selectedCards);
+    },
+    setSliderIndex(navigateIndex) {
+      for (var i = 0; i < this.$children.length; i++) {
+        if (this.$children[i].$el.classList.contains('explorer')) {
+          const carousel = this.$children[i].$children[0];
+          carousel.currentPage = navigateIndex;
+        }
+      }
+    },
+    updateSubcategories() {
+      var filter = [];
+      for (var key in this.cards) {
+        if (this.cards.hasOwnProperty(key)) {
+          const currentCategory = this.$store.state.category;
+          const subcategory = this.cards[key]['subcategory'];
+          if (subcategory && (currentCategory && this.cards[key]['category'] === currentCategory)) {
+            filter.push(subcategory);
+          }
+        }
+      }
+
+      filter.sort();
+      const unique = new Set(filter);
+      const uniqueArray = Array.from(unique);
+      this.subcategories = uniqueArray;
     }
   },
+  updated() {
+    if (document.querySelector('.url-search') && !this.typeahead) {
+      this.initSuggestions();
+    }
+  }
 }
 </script>
 
@@ -64,32 +161,72 @@ export default {
 #search {
   border: 1px solid #ddd;
   padding: 10px 20px;
-  font-size: 24px;
-  font-family: monospace;
+  font-size: 48px;
+  font-family: 'Roboto', monospace;
 
   &:before {
     font-family: "fontello";
     content: '\e801';
-    padding-right: 10px;
+    padding-right: 30px;
+    color: #999;
   }
 
-  .url-search {
-    border: none;
-    width: 95%;
-    display: inline-block;
+  .suggestions {
+    list-style-type: none;
+    a {
+      color: #666;
+      text-decoration: none;
+
+      &:hover{
+        cursor: pointer;
+        text-decoration: underline;
+      }
+    }
+  }
+
+  .explore-prompt {
     position: relative;
-    left: -12px;
+    left: -10px;
   }
 }
 
 .vue-typer .custom.caret {
-  width: 30px;
+  width: 45px;
   transform: rotate(90deg);
-  background-color: #ccc;
-  color: #ccc;
+  background-color: #999;
+  color: #999;
   height: 2px;
   position: relative;
   left: -8px;
   top: -2px;
+}
+
+.btns {
+  margin: 10px 0 40px;
+}
+
+.secondary {
+  .btn {
+    font-size: 14px;
+    line-height: 1em;
+    border: 2px solid #fffAb7;
+    color: #000;
+    background-color: #fffAb7;
+    padding: 5px 14px 3px;
+    margin: 0 4px 7px 0px;
+    border-radius: 15px;
+    box-shadow: 0 1px 2px rgba(218, 218, 218, 0.16), 0 1px 2px rgba(204, 201, 201, 0.23);
+
+    &:hover, &:focus {
+      background-color: #f9d289;
+      border: 2px solid #f9d289;
+    }
+
+    &:active,
+    &.active {
+      border: 2px solid #f9d289;
+      background-color: #f9d289;
+    }
+  }
 }
 </style>
