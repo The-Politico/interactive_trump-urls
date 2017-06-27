@@ -28,12 +28,13 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
   .filter-btn {
     background-color: white;
     border: 1px solid #666;
-    padding: 15px;
+    padding: 10px;
     border-radius: none;
-    font-weight: bold;
+    font-weight: normal;
     outline: none;
 
     &:active {

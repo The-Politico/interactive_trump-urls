@@ -17,15 +17,15 @@
       <span class="explore-prompt" v-if="interacted">Explore the URLs below</span>
     </div>
     <div class="btns">
-      <filter-btn category="Odd Names" class="odd-names" v-on:reshuffle="reshuffleCards"></filter-btn>
       <filter-btn category="Business Ventures" class="business-ventures" v-on:reshuffle="reshuffleCards"></filter-btn>
-      <filter-btn category="Political Sites" class="political-sites" v-on:reshuffle="reshuffleCards"></filter-btn>
       <filter-btn category="Foreign Ventures" class="foreign-ventures" v-on:reshuffle="reshuffleCards"></filter-btn>
+      <filter-btn category="Political Sites" class="political-sites" v-on:reshuffle="reshuffleCards"></filter-btn>
+      <filter-btn category="Odd Names" class="odd-names" v-on:reshuffle="reshuffleCards"></filter-btn>
       <filter-btn category="Surprise me!" class="surprise-me" v-on:reshuffle="reshuffleCards"></filter-btn>
     </div>
     <div class="subcategories secondary">
       <subcategory-btn v-for="subcategory in subcategories" :key="subcategory" :name="subcategory"></subcategory-btn>
-    </div>      
+    </div>
     <explorer :cards="selectedCards"></explorer>
   </div>
 </template>
@@ -40,7 +40,7 @@ import SubcategoryBtn from './SubcategoryBtn.vue';
 
 export default {
   name: 'app',
-  components: { 
+  components: {
     'explorer': Explorer,
     'filter-btn': FilterBtn,
     'vue-typer': VueTyper,
@@ -94,8 +94,8 @@ export default {
   methods: {
     onTyped: function(typedString) {
       this.$store.commit('updateSelection', this.cards[typedString.toUpperCase()]);
-      
-      let navigateIndex = 0;      
+
+      let navigateIndex = 0;
       const slides = document.querySelectorAll('.VueCarousel-slide');
       for (var i = 0; i < slides.length; i++) {
         const domain = slides[i].querySelector('h3').textContent;
@@ -103,7 +103,7 @@ export default {
           navigateIndex = i;
         }
       }
-      
+
       const len = this.$children.length;
       this.setSliderIndex(navigateIndex)
     },
@@ -163,6 +163,7 @@ export default {
   padding: 10px 20px;
   font-size: 48px;
   font-family: 'Roboto', monospace;
+  text-align: center;
 
   &:before {
     font-family: "fontello";
@@ -202,10 +203,15 @@ export default {
 }
 
 .btns {
-  margin: 10px 0 40px;
+  margin: 10px 0 10px;
+  text-align: center;
+  display: block
 }
 
 .secondary {
+  text-align: center;
+  display: block;
+
   .btn {
     font-size: 14px;
     line-height: 1em;
@@ -216,6 +222,7 @@ export default {
     margin: 0 4px 7px 0px;
     border-radius: 15px;
     box-shadow: 0 1px 2px rgba(218, 218, 218, 0.16), 0 1px 2px rgba(204, 201, 201, 0.23);
+
 
     &:hover, &:focus {
       background-color: #f9d289;
