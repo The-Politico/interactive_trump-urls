@@ -49,6 +49,9 @@ export default {
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
   border-radius: 5px;
+    @media(max-width: 500px){
+      padding: 20px;
+    }
 
   &.business-ventures {
     background-color: #D2E6B7;

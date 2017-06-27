@@ -39,3 +39,13 @@ header h1{
 section.full-width{
   max-width: 100%;
 }
+
+article p{
+  word-break: break-all;
+}
+
+@media(max-width: 600px){
+  .VueCarousel-navigation{
+    display: none !important;
+  }
+}
