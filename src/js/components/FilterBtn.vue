@@ -16,7 +16,11 @@ export default {
       });
       event.target.classList.add('selected');
 
-      this.$store.commit('change', this.category)
+      if (this.$store.state.category === this.category) {
+        this.$emit('reshuffle')
+      } else {
+        this.$store.commit('change', this.category)
+      }
     }
   }
 }
@@ -29,6 +33,11 @@ export default {
     padding: 15px;
     border-radius: none;
     font-weight: bold;
+    outline: none;
+
+    &:active {
+      outline: none;
+    }
 
     &.odd-names {
       &.selected, &:hover {

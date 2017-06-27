@@ -1,8 +1,8 @@
 <template>
   <div :class="[cardClass, categoryClass]">
     <h4>{{ url.category }}</h4>
-    <h3>{{ url.domain }}</h3>
-    <p>{{ url.owner_org }}</p>
+    <h3 :class="isLongTitle">{{ url.domain }}</h3>
+    <p class="org">{{ url.owner_org }}</p>
 
     <div class="dates">
       <div class="date">
@@ -31,7 +31,10 @@ export default {
     },
     categoryClass() {
       return window.classify(this.url.category)
-    } 
+    },
+    isLongTitle() {
+      return this.url.domain.length > 35 ? 'small' : null
+    }
   }
 }
 
@@ -71,7 +74,11 @@ export default {
 
   h3 {
     font-family: monospace;
-    font-size: 18px;
+    font-size: 16px;
+
+    &.small {
+      font-size: 13px;
+    }
   }
 
   h4 {
@@ -80,6 +87,10 @@ export default {
 
   p {
     font-size: 13px;
+  }
+
+  .org {
+    min-height: 21px;
   }
 
   .dates {
