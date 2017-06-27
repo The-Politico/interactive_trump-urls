@@ -1,7 +1,7 @@
 <template>
   <div id="explorer" class="explorer">
     <div class="selections">
-      <carousel :navigationEnabled="true" :paginationEnabled="false" :perPageCustom="[[0,1], [600, 2]]" :speed="0">
+      <carousel :navigationEnabled="true" :paginationEnabled="false" :perPageCustom="[[0,1], [600, 2]]" :speed="swipeSpeed">
         <slide v-for="card in cards">
           <card :url="card"></card>
         </slide>
@@ -22,9 +22,21 @@ export default {
     'carousel': Carousel,
     'Slide': Slide
   },
+  data() {
+    return {
+      swipeSpeed: 0    
+    }
+  },
   props: ['cards'],
   mounted() {
-    console.log(this.cards);
+    const bbox = this.$el.getBoundingClientRect();
+    const width = bbox.width;
+
+    if (width > 768) {
+      this.swipeSpeed = 0;
+    } else {
+      this.swipeSpeed = 500;
+    }
   }
 }
 </script>
