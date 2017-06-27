@@ -43,12 +43,15 @@ export default {
 <style lang="scss">
 .card {
   box-sizing: border-box;
-  padding: 40px 40px;
+  padding: 40px;
   margin: 0 10px;
-  min-height: 267px;
+  min-height: 227px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
 
   &.business-ventures {
-    background-color: #D2E6B7;  
+    background-color: #D2E6B7;
   }
 
   &.foreign-ventures {
@@ -75,12 +78,12 @@ export default {
 
   h3 {
     font-family: 'Roboto', Helvetica, Arial, sans-serif;
-    font-size: 28px;
+    font-size: 30px;
     word-break: break-all;
   }
 
   h4 {
-    font-size: 12px;
+    font-size: 16px;
   }
 
   p {
@@ -100,7 +103,8 @@ export default {
   .date {
     width: 33%;
     h5, p {
-      text-align: center;
+      text-align: left;
+      margin-bottom: 5px;
     }
   }
 }

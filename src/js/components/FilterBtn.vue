@@ -31,7 +31,7 @@ export default {
 
   .filter-btn {
     background-color: white;
-    border: 1px solid #666;
+    border: 2px solid #666;
     padding: 10px;
     border-radius: none;
     font-weight: normal;
@@ -42,41 +42,46 @@ export default {
     }
 
     &.odd-names {
+      border: 2px solid #F4D7B1;
       &.selected, &:hover {
         background-color: #F4D7B1;
-        border: 1px solid #F4D7B1;
+        border: 2px solid #F4D7B1;
         color: #111;
       }
     }
 
     &.business-ventures {
+        border: 2px solid #D2E6B7;
       &.selected, &:hover {
         background-color: #D2E6B7;
-        border: 1px solid #D2E6B7;
+        border: 2px solid #D2E6B7;
         color: #111;
       }
     }
 
     &.foreign-ventures {
+      border: 2px solid #BCEBE7;
       &.selected, &:hover {
         background-color: #BCEBE7;
-        border: 1px solid #BCEBE7;
+        border: 2px solid #BCEBE7;
         color: #111;
       }
     }
 
     &.political-sites {
+    border: 2px solid #F3C4C4;
       &.selected, &:hover {
         background-color: #F3C4C4;
-        border: 1px solid #F3C4C4;
+        border: 2px solid #F3C4C4;
         color: #111;
       }
     }
 
     &.surprise-me {
+    border: 2px solid #EAEAEA;
       &.selected, &:hover {
         background-color: #EAEAEA;
-        border: 1px solid #EAEAEA;
+        border: 2px solid #EAEAEA;
         color: #111;
       }
     }

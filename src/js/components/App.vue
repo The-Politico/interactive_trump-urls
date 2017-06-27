@@ -170,6 +170,7 @@ export default {
     content: '\e801';
     padding-right: 30px;
     color: #999;
+    float: right;
   }
 
   .suggestions {
@@ -215,9 +216,9 @@ export default {
   .btn {
     font-size: 14px;
     line-height: 1em;
-    border: 2px solid #fffAb7;
+    border: 2px solid #e4e4e4;
     color: #000;
-    background-color: #fffAb7;
+    background-color: #fff;
     padding: 5px 14px 3px;
     margin: 0 4px 7px 0px;
     border-radius: 15px;
