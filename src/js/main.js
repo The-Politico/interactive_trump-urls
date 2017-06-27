@@ -30,7 +30,7 @@ window.classify = function(str) {
     .replace(/-+$/, '');            // Trim - from end of text
 } 
 
-getCards();
+// getCards();
 
 Vue.use(Vuex)
 
@@ -67,51 +67,54 @@ const app = new Vue({
   render: h => h(App),
 })
 
-// const venezuela = new Vue({
-//   el: '#venezuela',
-//   template: '<explorer cards="cards"></explorer>',
-//   components: {
-//     Explorer: Explorer  
-//   },
-//   data: {
-//     cards: {}
-//   },
-//   render: h => h(Explorer),
-//   mounted() {
-//     const filtered = cardFilter('Business Ventures', 'Trump University')
-//     this.cards = filtered;
-//   },
-// })
+function getCards() {
+  request
+    .get('data/cards.json')
+    .end((err, res) => {
+      allCards = res.body;
+      renderExtraEmbeds();
+    });
+}
 
-// function getCards() {
-//   request
-//     .get('data/cards.json')
-//     .end((err, res) => {
-//       allCards = res.body;
-//     });
-// }
+function cardFilter(category, subcategory) { 
+  const filter = [];
 
-// function cardFilter(category, subcategory) { 
-//   const filter = [];
+  for (var key in allCards) {
+    if (allCards.hasOwnProperty(key)) {
+      const cardCategory = allCards[key]['category']
+      const cardSubcategory = allCards[key]['subcategory'];
 
-//   for (var key in allCards) {
-//     if (allCards.hasOwnProperty(key)) {
-//       const cardCategory = allCards[key]['category']
-//       const cardSubcategory = allCards[key]['subcategory'];
-
-//       if (subcategory) {
-//         if (cardCategory === category && cardSubcategory === subcategory) {
-//           filter.push(allCards[key]);
-//         }
-//       } else {
-//         if (cardCategory === category) {
-//           filter.push(allCards[key]);
-//         }
-//       }
-//     }
-//   }
+      if (subcategory) {
+        if (cardCategory === category && cardSubcategory === subcategory) {
+          filter.push(allCards[key]);
+        }
+      } else {
+        if (cardCategory === category) {
+          filter.push(allCards[key]);
+        }
+      }
+    }
+  }
 
 
-//   console.log(filter);
-//   return filter;
-// }
+  console.log(filter);
+  return filter;
+}
+
+function renderExtraEmbeds() {
+  const venezuela = new Vue({
+    el: '#venezuela',
+    template: '<explorer cards="cards"></explorer>',
+    components: {
+      Explorer: Explorer  
+    },
+    data: {
+      cards: {}
+    },
+    render: h => h(Explorer),
+    mounted() {
+      const filtered = cardFilter('Business Ventures', 'Trump University')
+      this.cards = filtered;
+    },
+  })
+}
