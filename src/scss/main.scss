@@ -44,8 +44,19 @@ article p{
   word-break: break-all;
 }
 
-@media(max-width: 600px){
+.swipe-directions{
+  display: none;
+}
+
+@media(max-width: 768px){
   .VueCarousel-navigation{
     display: none !important;
+  }
+  .swipe-directions{
+    display: block;
+    text-align: center;
+    margin: 0 auto;
+    font-family: $proxima;
+    color: $satan;
   }
 }

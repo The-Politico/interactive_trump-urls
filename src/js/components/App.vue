@@ -160,6 +160,7 @@ export default {
 <style lang="scss">
 #search {
   border: 1px solid #ddd;
+  border-radius: 6px;
   padding: 10px 20px;
   font-size: 40px;
   font-family: 'Roboto', monospace;
@@ -174,6 +175,9 @@ export default {
     padding-right: 30px;
     color: #999;
     float: right;
+    @media(max-width: 768px){
+        padding-right: 0px;
+    }
   }
 
   .suggestions {

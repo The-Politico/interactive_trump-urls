@@ -36,10 +36,11 @@ export default {
     border-radius: none;
     font-weight: normal;
     outline: none;
-      @media(max-width: 600px){
-        font-size: 12px;
-        padding: 9px;
+      @media(max-width: 768px){
+        font-size: 13px;
+        padding: 8px 10px;
       }
+
 
     &:active {
       outline: none;

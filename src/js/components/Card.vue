@@ -49,8 +49,8 @@ export default {
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
   border-radius: 5px;
-    @media(max-width: 500px){
-      padding: 20px;
+    @media(max-width: 600px){
+      padding: 30px 20px;
     }
 
   &.business-ventures {
