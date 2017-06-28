@@ -17,9 +17,9 @@ export default {
       event.target.classList.add('selected');
 
       if (this.$store.state.category === this.category) {
-        this.$emit('reshuffle')
+        this.$emit('reshuffle');
       } else {
-        this.$store.commit('change', this.category)
+        this.$store.commit('change', this.category);
         this.$store.commit('updateSubcategory', null);
       }
     }

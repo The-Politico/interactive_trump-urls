@@ -92,7 +92,7 @@ export default {
     },
   },
   methods: {
-    onTyped: function(typedString) {
+    onTyped(typedString) {
       this.$store.commit('updateSelection', this.cards[typedString.toUpperCase()]);
 
       let navigateIndex = 0;
@@ -107,7 +107,7 @@ export default {
       const len = this.$children.length;
       this.setSliderIndex(navigateIndex)
     },
-    getCards: function() {
+    getCards() {
       request
         .get('data/cards.json')
         .end((err, res) => {
