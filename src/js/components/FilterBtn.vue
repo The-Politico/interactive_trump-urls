@@ -16,11 +16,19 @@ export default {
       });
       event.target.classList.add('selected');
 
-      if (this.$store.state.category === this.category) {
-        this.$emit('reshuffle');
+      if (!this.$store.state.category && this.category === null) {
+        this.$store.commit('change', 'Surprise me!');
+      } else if (this.$store.state.category === 'Surprise me!' && this.category === 'Surprise me!') {
+        this.$store.commit('change', null);
       } else {
         this.$store.commit('change', this.category);
         this.$store.commit('updateSubcategory', null);
+
+        const allSubcategoryBtns = document.querySelectorAll('.subcategories .btn');
+        console.log(allSubcategoryBtns);
+        allSubcategoryBtns.forEach((btn) => {
+          btn.classList.remove('active');
+        });
       }
     }
   }

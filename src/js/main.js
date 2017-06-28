@@ -36,7 +36,7 @@ Vue.use(Vuex)
 
 const store = new Vuex.Store({
   state: {
-    category: 'Surprise me!',
+    category: null,
     interacted: false,
     selection: null,
     subcategory: null

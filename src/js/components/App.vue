@@ -76,7 +76,7 @@ export default {
               filter.push(this.cards[key]);
             }
           } else {
-            if (this.$store.state.category === 'Surprise me!') {
+            if (this.$store.state.category === 'Surprise me!' || !this.$store.state.category) {
               filter.push(this.cards[key])
             }
             else if (category === this.$store.state.category) {
