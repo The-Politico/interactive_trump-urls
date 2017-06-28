@@ -168,6 +168,9 @@ export default {
     @media(max-width: 768px){
         font-size: 20px;
     }
+    @media(max-width: 500px){
+        font-size: 14px;
+    }
 
   &:before {
     font-family: "fontello";
