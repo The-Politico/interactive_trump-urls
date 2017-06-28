@@ -1,5 +1,5 @@
 <template>
-  <div class="explorer">
+  <div class="explorer" @click="onExplorerClick">
     <div class="selections">
       <carousel :navigationEnabled="true" :paginationEnabled="false" :perPageCustom="[[0,1], [600, 2]]" :speed="swipeSpeed">
         <slide v-for="card in cards">
@@ -36,6 +36,13 @@ export default {
       this.swipeSpeed = 0;
     } else {
       this.swipeSpeed = 500;
+    }
+  },
+  methods: {
+    onExplorerClick(e) {
+      if (!this.$store.state.interacted) {
+        this.$store.commit('updateInteraction', true);
+      }
     }
   }
 }
