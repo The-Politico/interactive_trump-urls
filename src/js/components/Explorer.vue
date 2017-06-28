@@ -1,5 +1,5 @@
 <template>
-  <div id="explorer" class="explorer">
+  <div class="explorer">
     <div class="selections">
       <carousel :navigationEnabled="true" :paginationEnabled="false" :perPageCustom="[[0,1], [600, 2]]" :speed="swipeSpeed">
         <slide v-for="card in cards">
