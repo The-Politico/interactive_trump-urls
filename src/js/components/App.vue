@@ -169,7 +169,7 @@ export default {
         font-size: 20px;
     }
     @media(max-width: 500px){
-        font-size: 14px;
+        font-size: 15px;
     }
 
   &:before {
@@ -211,6 +211,16 @@ export default {
   position: relative;
   left: -8px;
   top: -2px;
+
+  &:before{
+    content: "\200B";
+    font-weight: 200;
+  }
+  @media(max-width: 768px){
+      width: 30px;
+      height: 1px;
+      font-weight: 200;
+  }
 }
 
 .btns {
