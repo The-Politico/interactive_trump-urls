@@ -24,7 +24,7 @@ export default {
   },
   data() {
     return {
-      swipeSpeed: 0    
+      swipeSpeed: 0
     }
   },
   props: ['cards'],
