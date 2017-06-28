@@ -40,7 +40,7 @@ export default {
   },
   methods: {
     onExplorerClick(e) {
-      if (!this.$store.state.interacted) {
+      if (this.$store && !this.$store.state.interacted  ) {
         this.$store.commit('updateInteraction', true);
       }
     }
