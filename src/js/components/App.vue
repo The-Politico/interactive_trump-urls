@@ -233,14 +233,14 @@ export default {
 
 
     &:hover, &:focus {
-      background-color: #f9d289;
-      border: 2px solid #f9d289;
+      background-color: #efebe4;
+      border: 2px solid #efebe4;
     }
 
     &:active,
     &.active {
-      border: 2px solid #f9d289;
-      background-color: #f9d289;
+      border: 2px solid #efebe4;
+      background-color: #efebe4;
     }
   }
 }
