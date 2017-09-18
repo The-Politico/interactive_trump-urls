@@ -69,3 +69,4 @@ typings/
 .env
 
 .DS_Store
+archie-token.json
